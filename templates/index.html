@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEB EDUKASI KESEHATAN PARU-PARU YANG TERINTEGRASI DEEP LEARNING</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Phetsarath:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Teko:wght@300..700&family=Wallpoet&display=swap" rel="stylesheet">
+
+</head>
+<body onload="initClock()">
+
+  <header>
+
+      <!-- Times -->
+        <div class="clock">
+            <div class="ht">
+                <span id="hr">Hari</span>
+                <span id="tg">00</span>
+                <span id="bln">Bulan</span>
+                <span id="thn">Tahun</span>
+            </div>
+            <div class="wkt">
+                <span id="jam">00</span>
+                <span id="mnt">00</span>
+                <span id="dtk">00</span>
+                <span id="prd">WIB</span>
+            </div>
+        </div>
+
+        <!-- Background Video -->
+        <video id="bg-video" autoplay muted loop>
+            <source src="{{ url_for('static', filename='asset/paru-paru.mp4') }}" type="video/mp4">
+        </video>
+
+        <!-- Navbar -->
+        <div class="navbar" id="navbar">
+            <div class="logo">
+                <a href="{{ url_for('index') }}">CRI<span>TI.</span></a>
+            </div>
+        
+            <div class="menu">
+                <!-- Dropdown untuk Profil -->
+                <div class="dropdown">
+                  <a href="{{ url_for('serve_profil') }}" class="tentang-kami">Profil</a>
+                </div>
+                
+                <!-- Dropdown untuk Kesehatan -->
+                <div class="dropdown">
+                    <a href="#" class="kesehatan">Kesehatan</a>
+                    <ul class="submenu">
+                        <li><a href="{{ url_for('serve_kesehatan') }}">Artikel Pneumonia</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Dropdown untuk CNN Model -->
+                 <div class="dropdown">
+                    <a href="#" class="cnn-model">CNN Model</a>
+                    <ul class="submenu">
+                        <li><a href="{{ url_for('serve_artikel') }}">Artikel</a></li>
+                        <li><a href="{{ url_for('serve_cnn_model') }}">Prediksi Paru-Paru</a></li>
+                    </ul>
+                 </div>
+            </div>
+        
+            <div class="right-menu">
+                <a href="#" class="login">Masuk/Daftar</a>
+                <i class="bx bx-menu" id="mini-button"></i>
+            </div>
+        </div>
+    
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="overlay">
+                <h2>Halo, selamat datang!<br>Bagaimana kondisi anda hari ini?</h2>
+                <p>Ini adalah website tentang paru-paru manusia<br>Menjelaskan kesehatan paru-paru, gejala pneumonia, dan tips perawatan.</p>
+                <!-- Tombol yang mengarah ke halaman CNN Model -->
+                <a href="{{ url_for('serve_cnn_model') }}" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+  </header>
+    
+  <!-- Articles Section -->
+  <section id="articles" class="articles">
+
+    <div class="container">
+      <h2>Artikel Terkait</h2>
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="card">
+            <img src="{{ url_for('static', filename='asset/batuk.jpg') }}" alt="Apa itu Pneumonia?" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Apa itu Pneumonia?</h5>
+              <a href="https://www.alodokter.com/pneumonia" class="btn btn-outline-primary">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card">
+            <img src="{{ url_for('static', filename='asset/anak.jpg') }}" alt="Gejala Pneumonia pada Anak dan Cara Mencegahnya" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Gejala Pneumonia pada Anak dan Cara Mencegahnya</h5>
+              <a href="https://www.alodokter.com/Kenali-dan-Cegah-Pneumonia-Pada-Anak" class="btn btn-outline-primary">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card">
+            <img src="{{ url_for('static', filename='asset/vaksin.jpg') }}" alt="Vaksinasi Pneumonia" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Vaksinasi Pneumonia</h5>
+              <a href="https://www.alodokter.com/jenis-jenis-vaksin-pneumonia-yang-perlu-anda-ketahui" class="btn btn-outline-primary">Read More</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Videos Section -->
+  <section id="videos" class="videos">
+
+    <div class="container">
+
+      <h2>Video Terkait</h2>
+
+      <div class="row">
+        
+        <div class="col-md-6">
+          <iframe width="100%" height="315" src="https://www.youtube.com/embed/19eb9cLmNmc?si=0h6_ICY4I7b2wK3o" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <div class="col-md-6">
+          <iframe width="100%" height="315" src="https://www.youtube.com/embed/OpZgaPSscFA?si=Cbxb6WHCAH2dixB5" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+      <div class="footer-container">
+        <div class="footer-logo">
+              <a href="#">CRI<span>TI.</span></a>
+        </div>
+        <div class="footer-section">
+          <h3>Site Map</h3>
+          <ul>
+            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeWotRk4sK_7wiCxqMNc68hTY-VAxl42VgmHGVSasabylX-XA/viewform?usp=header">FAQ</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Syarat & Ketentuan</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+            <li><a href="#">Promo</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Layanan Pengaduan Konsumen</h3>
+          <p>
+            Jl. Dr. Setiabudhi No. 229 Bandung 40154
+            Jawa Barat - Indonesia<br>
+            <a href="mailto:crititeam333@gmail.com">crititeam333@gmail.com</a> / 0896 5824 5817 (WhatsApp)<br>
+          </p>
+        </div>
+        <div class="footer-social">
+          <p>Follow kami di:</p>
+          <div class="social-icons">
+            <a href="#"><i class="bx bxl-twitter bx-lg bx-tada-hover"></i></a>
+            <a href="https://www.tiktok.com/@criti.team?_t=8r9sb9owqFk&_r=1"><i class='bx bxl-tiktok bx-lg bx-tada-hover'></i></a>
+            <a href="https://www.instagram.com/crititeam/"><i class="bx bxl-instagram bx-lg bx-tada-hover"></i></a>
+            <a href="https://youtube.com/@crititeam?si=5_ukLGBKctS2oIdP"><i class='bx bxl-youtube bx-lg bx-tada-hover'></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 - CRIMINAL TECHNOLOGY INFORMATION</p>
+      </div>
+  </footer>
+    
+    <!-- Load script.js untuk fungsi clock dan navbar -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNN Model Pneumonia - CRITI</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Phetsarath:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Teko:wght@300..700&family=Wallpoet&display=swap" rel="stylesheet">
+</head>
+
+<body onload="initClock()">
+
+    <header>
+        <!-- Times -->
+        <div class="clock">
+            <div class="ht">
+                <span id="hr">Hari</span>
+                <span id="tg">00</span>
+                <span id="bln">Bulan</span>
+                <span id="thn">Tahun</span>
+            </div>
+            <div class="wkt">
+                <span id="jam">00</span>
+                <span id="mnt">00</span>
+                <span id="dtk">00</span>
+                <span id="prd">WIB</span>
+            </div>
+        </div>
+
+        <!-- Background Video -->
+        <video id="bg-video" autoplay muted loop>
+            <source src="{{ url_for('static', filename='asset/paru-paru.mp4') }}" type="video/mp4">
+        </video>
+
+        <!-- Navbar -->
+        <div class="navbar" id="navbar">
+            <div class="logo">
+                <a href="{{ url_for('index') }}">CRI<span>TI.</span></a>
+            </div>
+        
+            <div class="menu">
+                <!-- Dropdown untuk Profil -->
+                <div class="dropdown">
+                  <a href="{{ url_for('serve_profil') }}" class="tentang-kami">Profil</a>
+                </div>
+                
+                <!-- Dropdown untuk Kesehatan -->
+                <div class="dropdown">
+                    <a href="#" class="kesehatan">Kesehatan</a>
+                    <ul class="submenu">
+                        <li><a href="{{ url_for('serve_kesehatan') }}">Artikel Pneumonia</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Dropdown untuk CNN Model -->
+                 <div class="dropdown">
+                    <a href="#" class="cnn-model">CNN Model</a>
+                    <ul class="submenu">
+                        <li><a href="{{ url_for('serve_artikel') }}">Artikel</a></li>
+                        <li><a href="{{ url_for('serve_cnn_model') }}">Prediksi Paru-Paru</a></li>
+                    </ul>
+                 </div>
+            </div>
+        
+            <div class="right-menu">
+                <a href="#" class="login">Masuk/Daftar</a>
+                <i class="bx bx-menu" id="mini-button"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Detection Section -->
+    <section id="detection" class="detection">
+      <div class="container text-center">
+        <h2>CNN Model Pneumonia</h2>
+        <form id="upload-form" enctype="multipart/form-data">
+          <input type="file" name="file" accept="image/*" class="form-control mb-3" required>
+          <button type="submit" class="btn btn-primary">Cek</button>
+        </form>
+        <div id="result" class="mt-3"></div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+          <div class="footer-logo">
+                <a href="#">CRI<span>TI.</span></a>
+          </div>
+          <div class="footer-section">
+            <h3>Site Map</h3>
+            <ul>
+              <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeWotRk4sK_7wiCxqMNc68hTY-VAxl42VgmHGVSasabylX-XA/viewform?usp=header">FAQ</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Syarat & Ketentuan</a></li>
+              <li><a href="#">Kebijakan Privasi</a></li>
+              <li><a href="#">Promo</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Layanan Pengaduan Konsumen</h3>
+            <p>
+              Jl. Dr. Setiabudhi No. 229 Bandung 40154
+              Jawa Barat - Indonesia<br>
+              <a href="mailto:crititeam333@gmail.com">crititeam333@gmail.com</a> / 0896 5824 5817 (WhatsApp)<br>
+            </p>
+          </div>
+          <div class="footer-social">
+            <p>Follow kami di:</p>
+            <div class="social-icons">
+              <a href="#"><i class="bx bxl-twitter bx-lg bx-tada-hover"></i></a>
+              <a href="https://www.tiktok.com/@criti.team?_t=8r9sb9owqFk&_r=1"><i class='bx bxl-tiktok bx-lg bx-tada-hover'></i></a>
+              <a href="https://www.instagram.com/crititeam/"><i class="bx bxl-instagram bx-lg bx-tada-hover"></i></a>
+              <a href="https://youtube.com/@crititeam?si=5_ukLGBKctS2oIdP"><i class='bx bxl-youtube bx-lg bx-tada-hover'></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 - CRIMINAL TECHNOLOGY INFORMATION</p>
+        </div>
+    </footer>
+      
+    <!-- Inline Script untuk Form Submission -->
+    <script>
+      // Fungsi asinkron untuk submit form
+      const form = document.getElementById('upload-form');
+      const resultDiv = document.getElementById('result');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        resultDiv.innerHTML = "Sedang memproses, harap tunggu...";
+
+        const formData = new FormData(form);
+        try {
+          const response = await fetch('{{ url_for("handle_predict") }}', {
+            method: 'POST',
+            body: formData
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+          }
+
+          const data = await response.json();
+
+          if (data.error) {
+            resultDiv.innerHTML = `<p style="color:red;">${data.error}</p>`;
+            return;
+          }
+
+          // Tampilkan hasil prediksi dan gambar Grad-CAM
+          resultDiv.innerHTML = `
+            <h4>Hasil Prediksi: ${data.label} (Probabilitas: ${data.probability})</h4>
+            <img src="data:image/png;base64,${data.gradcam_image}" alt="Grad-CAM Image" class="img-fluid mt-3">
+          `;
+        } catch (error) {
+          console.error('Error:', error);
+          resultDiv.innerHTML = `<p style="color:red;">Terjadi kesalahan: ${error.message}</p>`;
+        }
+      });
+    </script>
+    <!-- Load script.js untuk fungsi clock dan navbar -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

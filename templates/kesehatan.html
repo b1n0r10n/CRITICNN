@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEB EDUKASI KESEHATAN PARU-PARU YANG TERINTEGASI DEEP LEARNING</title>
+
+    <!-- style -->
+    <link rel="stylesheet" href="style.css">
+    <!-- font -->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Phetsarath:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Teko:wght@300..700&family=Wallpoet&display=swap" rel="stylesheet">
+</head>
+
+<body onload=initClock()>
+
+    <header>
+        <!-- Times -->
+          <div class="clock">
+              <div class="ht">
+                  <span id="hr">Hari</span>
+                  <span id="tg">00</span>
+                  <span id="bln">Bulan</span>
+                  <span id="thn">Tahun</span>
+              </div>
+              <div class="wkt">
+                  <span id="jam">00</span>
+                  <span id="mnt">00</span>
+                  <span id="dtk">00</span>
+                  <span id="prd">WIB</span>
+              </div>
+          </div>
+  
+          <!-- background -->
+          <video id="bg-video" autoplay muted loop>
+            <source src="{{ url_for('static', filename='asset/paru-paru.mp4') }}" type="video/mp4">
+          </video>
+  
+          <!-- Navbar -->
+          <div class="navbar" id="navbar">
+              <div class="logo">
+                <a href="{{ url_for('index') }}">CRI<span>TI.</span></a>
+              </div>
+          
+              <div class="menu">
+                  <!-- dropdown untuk tentang kami -->
+                  <div class="dropdown">
+                    <a href="{{ url_for('serve_profil') }}" class="tentang-kami">Profil</a>
+                  </div>
+                  
+                  <div class="dropdown">
+                      <a href="#" class="kesehatan">Kesehatan</a>
+                      <!-- Sub-menu -->
+                      <ul class="submenu">
+                        <li><a href="{{ url_for('serve_kesehatan') }}">Artikel Pneumonia</a></li>
+                      </ul>
+                  </div>
+                  
+                  <!-- dropdown untuk cnn model -->
+                   <div class="dropdown">
+                      <a href="#" class="cnn-model">CNN Model</a>
+                      <ul class="submenu">
+                        <li><a href="{{ url_for('serve_artikel') }}">Artikel</a></li>
+                        <li><a href="{{ url_for('serve_cnn_model') }}">Prediksi Paru-Paru</a></li>
+                      </ul>
+                   </div>
+              </div>
+          
+              <div class="right-menu">
+                  <a href="#" class="login">Masuk/Daftar</a>
+                  <i class="bx bx-menu" id="mini-button"></i>
+              </div>
+          </div>
+    </header>
+    
+    <!-- section artikel pneumonia -->
+     <section class="section-content" id="artikel-pneumonia">
+        <div class="man">
+          <h3>Pneumonia</h3>
+          <img src="https://tse1.mm.bing.net/th?id=OIP.doeVgkg360Ky5s0liF87zQHaEW&pid=Api&P=0&h=180">
+          <!-- daftar isi artikel -->
+          <p>Daftar isi:</p>
+          <p><a href="#h-pengertian-pneumonia">1. Pengertian Pneumonia</a></p>
+          <p><a href="#h-penyebab-pneumonia">2. Penyebab Pneumonia</a></p>
+          <p><a href="#h-resiko-pneumonia">3. Faktor Resiko Pneumonia</a></p>
+          <p><a href="#h-gejala-pneumonia">4. Gejala Pneumonia</a></p>
+          <p><a href="#h-diagnosis-pneumonia">5. Diagnosis Pneumonia</a></p>
+          <p><a href="#h-pencegahan-pneumonia">6. Pencegahan Pneumonia</a></p>
+          <p><a href="#h-pengobatan-pneumonia">7. Pengobatan Pneumonia</a></p>
+          <p><a href="#h-dan-pneumonia">dan lainnya.</a></p>
+
+          <!-- pengertian pneumonia -->
+          <div class="cta" id="h-pengertian-pneumonia">
+            <h4><b>Pengertian Pneumonia</b></h4>
+            <p>Pneumonia adalah infeksi serius yang menyerang paru-paru, khususnya pada alveolus, yaitu kantung udara kecil tempat terjadinya pertukaran oksigen dan karbon dioksida. Infeksi ini menyebabkan alveolus terisi dengan cairan atau nanah, sehingga mengganggu fungsi paru-paru dan membuat penderitanya sulit bernapas.</p>
+            <p>Pneumonia bisa ringan hingga berat, tergantung pada penyebab, kondisi kesehatan, serta usia penderita. Penyakit ini bisa menjadi kondisi yang mengancam nyawa, terutama bagi bayi, anak kecil, lansia, serta individu dengan sistem kekebalan tubuh yang lemah.</p>
+            <img src="">
+          </div>
+          
+          <!-- penyebab pneumonia -->
+          <div class="cta" id="h-penyebab-pneumonia">
+            <h4><b>Penyebab Pneumonia</b></h4>
+            <p>Pneumonia dapat disebabkan oleh berbagai agen infeksi, termasuk:</p><br>
+            <p>1. Bakteri<br><br>
+              o	Streptococcus pneumoniae adalah penyebab pneumonia bakteri yang paling umum. <br> o	Haemophilus influenzae atau Mycoplasma pneumoniae juga bisa menjadi penyebab.</p><br>
+            <p>2. Virus<br><br>
+              o	Virus pernapasan seperti influenza, RSV (respiratory syncytial virus), dan virus corona (termasuk SARS-CoV-2).</p><br>
+            <p>3. Jamur<br><br>
+              o	Jenis ini lebih jarang terjadi, biasanya menyerang orang dengan sistem imun lemah, seperti pengidap HIV/AIDS atau pasien yang menjalani kemoterapi. Jamur penyebab antara lain Pneumocystis jirovecii dan Aspergillus.</p><br>
+            <p>4. Pneumonia Aspirasi<br><br>
+              o	Terjadi ketika makanan, cairan, atau bahan asing (seperti muntahan) masuk ke paru-paru, menyebabkan iritasi dan infeksi.</p><br>
+          </div>
+
+          <!-- Faktor resiko pneumonia -->
+          <div class="cta" id="h-resiko-pneumonia">
+            <h4>Faktor Resiko Pneumonia</h4>
+            <p>Beberapa faktor yang meningkatkan risiko terkena pneumonia meliputi:</p><br>
+            <p>• Usia: Bayi, anak kecil, dan lansia memiliki risiko lebih tinggi.<br>
+              •	Penyakit kronis seperti asma, diabetes, atau penyakit jantung.<br>
+              •	Merokok, karena merusak mekanisme pertahanan paru-paru.<br>
+              •	Sistem kekebalan tubuh yang lemah akibat HIV/AIDS, penggunaan obat imunosupresan, atau malnutrisi.<br>
+              •	Paparan lingkungan yang buruk, seperti polusi udara atau tempat tinggal yang padat.<br>
+              </p><br>
+          </div>
+
+          <!-- Gejala Pneumonia -->
+           <div class="cta" id="h-gejala-pneumonia">
+            <h4><b>Gejala Pneumonia</b></h4>
+            <p>Gejala pneumonia dapat muncul secara tiba-tiba atau bertahap dan meliputi:</p>
+            <p>1. Gejala Umum<br> 
+              o	Demam tinggi, menggigil, dan berkeringat.<br>
+              o	Batuk produktif dengan dahak kental (berwarna kuning, hijau, atau bercampur darah).<br>
+              o	Nyeri dada, terutama saat bernapas atau batuk.<br>
+              o	Kelelahan ekstrem atau lemas.<br>
+            </p>
+           </div>
+
+           <!-- Diagnosis Pneumonia -->
+            <div class="cta" id="h-diagnosis-pneumonia">
+              <h4><b>Diagnosis Pneumonia</b></h4>
+              <p>Dokter biasanya akan mendiagnosis pneumonia melalui kombinasi:</p>
+              <p>• Pemeriksaan fisik (mendengarkan suara napas dengan stetoskop).<br>
+                •	Rontgen dada untuk melihat tingkat kerusakan paru-paru.<br>
+                •	Tes darah untuk mengidentifikasi infeksi.<br>
+                •	Tes dahak untuk menentukan jenis mikroorganisme penyebab.<br>
+                •	Oksimetri untuk memeriksa kadar oksigen dalam darah.<br>
+              </p>
+            </div>
+
+            <!-- Pencegahan Pneumonia -->
+            <div class="cta" id="h-pencegahan-pneumonia">
+              <p><b>Pencegahan Pneumonia</b></p>
+              <p>Langkah-langkah pencegahan yang efektif meliputi:</p>
+              <p>1. Vaksinasi<br> 
+                o	Vaksin pneumokokus untuk mencegah pneumonia bakteri.<br>
+                o	Vaksin influenza untuk mengurangi risiko pneumonia akibat komplikasi flu.
+              </p>
+              <p>2. Menjaga Kebersihan<br> 
+                o	Cuci tangan secara teratur dengan sabun.<br>
+                o	Hindari kontak dekat dengan orang yang sakit.<br>
+              </p>
+              <p>3. Hindari Faktor Resiko<br> 
+                o	Berhenti merokok dan hindari paparan asap rokok.<br>
+                o	Gunakan masker di lingkungan yang berpolusi atau penuh debu.<br>                
+              </p>
+              <p>4. Pola Hidup Sehat<br> 
+                o	Konsumsi makanan bergizi untuk memperkuat daya tahan tubuh.<br>
+                o	Lakukan olahraga secara teratur.<br>
+                o	Tidur cukup untuk menjaga kesehatan tubuh.<br>
+              </p>
+            </div>
+
+            <!-- Pengobatan Pneumonia -->
+            <div class="cta" id="h-pengobatan-pneumonia">
+              <p><b>Pengobatan Pneumonia</b></p>
+              <p>Pengobatan pneumonia bergantung pada penyebab dan tingkat keparahannya:</p>
+              <p>1. Pneumonia Bakteri<br> o	Dapat diobati dengan antibiotik, yang biasanya menunjukkan hasil dalam beberapa hari.
+              </p>
+              <p>2. Pneumonia Virus<br> o	Perawatan bersifat suportif (istirahat, cairan, antipiretik), tetapi antivirus dapat diberikan dalam kasus tertentu.
+              </p>
+              <p>3. Perawatan Tambahan<br> 
+                o	Oksigen tambahan atau rawat inap mungkin diperlukan untuk pasien dengan pneumonia berat.</p>
+            </div>
+
+            <!-- All more -->
+            <div class="cta" id="h-dan-pneumonia">
+              <p><b>Kapan Harus Berkonsultasi dengan Dokter?</b></p>
+              <p>Segera konsultasikan dengan dokter jika Anda atau orang terdekat mengalami gejala berikut:</p>
+              <p>• Kesulitan bernapas.<br>
+                •	Demam tinggi yang tidak membaik dengan obat penurun panas.<br>
+                •	Nyeri dada yang parah.<br>
+                •	Kebingungan atau penurunan kesadaran, terutama pada lansia.
+                </p>
+            </div>
+
+
+     </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+          <div class="footer-logo">
+                <a href="#">CRI<span>TI.</span></a>
+          </div>
+          <div class="footer-section">
+            <h3>Site Map</h3>
+            <ul> 
+              <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeWotRk4sK_7wiCxqMNc68hTY-VAxl42VgmHGVSasabylX-XA/viewform?usp=header">FAQ</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Syarat & Ketentuan</a></li>
+              <li><a href="#">Kebijakan Privasi</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Layanan Pengaduan Konsumen</h3>
+            <p>
+              Jl. Dr. Setiabudhi No. 229 Bandung 40154
+              Jawa Barat - Indonesia<br>
+              <a href="mailto:crititeam333@gmail.com">crititeam333@gmail.com</a> / 0896 5824 5817 (WhatsApp)<br>
+            </p>
+          </div>
+          <div class="footer-social">
+            <p>Follow kami di:</p>
+            <div class="social-icons">
+              <a href="#"><i class="bx bxl-twitter bx-lg bx-tada-hover"></i></a>
+              <a href="https://www.tiktok.com/@criti.team?_t=8r9sb9owqFk&_r=1"><i class='bx bxl-tiktok bx-lg bx-tada-hover'></i></a>
+              <a href="https://www.instagram.com/crititeam/"><i class="bx bxl-instagram bx-lg bx-tada-hover"></i></a>
+              <a href="https://youtube.com/@crititeam?si=5_ukLGBKctS2oIdP"><i class='bx bxl-youtube bx-lg bx-tada-hover'></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 - CRIMINAL TECHNOLOGY INFORMATION</p>
+        </div>
+    </footer>
+        
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
