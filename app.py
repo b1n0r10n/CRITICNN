@@ -83,13 +83,13 @@ def predict_and_generate_heatmap(img, model, last_conv_layer_name, preprocess_in
 
 # Fungsi untuk memuat CSS dan JS dari file terpisah
 def load_css():
-    css_path = 'critiproject2/static/css/style.css'  # Sesuaikan dengan path
+    css_path = 'static/css/style.css'  # Sesuaikan dengan path
     with open(css_path, 'r') as file:
         css_code = file.read()
         st.markdown(f"<style>{css_code}</style>", unsafe_allow_html=True)
 
 def load_js():
-    js_path = 'critiproject2/static/js/script.js'  # Sesuaikan dengan path
+    js_path = 'static/js/script.js'  # Sesuaikan dengan path
     with open(js_path, 'r') as file:
         js_code = file.read()
         st.markdown(f"<script>{js_code}</script>", unsafe_allow_html=True)
