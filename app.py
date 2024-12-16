@@ -15,22 +15,31 @@ st.set_page_config(page_title="DIMASTI CNN", page_icon="🩺", layout="wide")
 # Fungsi untuk memuat CSS dari file eksternal
 def load_css():
     css_path = 'static/css/style.css'  # Sesuaikan dengan path
-    with open(css_path, 'r') as file:
-        css_code = file.read()
-        st.markdown(f"<style>{css_code}</style>", unsafe_allow_html=True)
+    try:
+        with open(css_path, 'r') as file:
+            css_code = file.read()
+            st.markdown(f"<style>{css_code}</style>", unsafe_allow_html=True)
+    except FileNotFoundError:
+        st.error(f"CSS file not found: {css_path}")
 
 # Fungsi untuk memuat JavaScript dari file eksternal
 def load_js():
     js_path = 'static/js/script.js'  # Sesuaikan dengan path
-    with open(js_path, 'r') as file:
-        js_code = file.read()
-        st.markdown(f"<script>{js_code}</script>", unsafe_allow_html=True)
+    try:
+        with open(js_path, 'r') as file:
+            js_code = file.read()
+            st.markdown(f"<script>{js_code}</script>", unsafe_allow_html=True)
+    except FileNotFoundError:
+        st.error(f"JavaScript file not found: {js_path}")
 
 # Fungsi untuk memuat HTML dari file eksternal
 def load_html(file_path):
-    with open(file_path, 'r') as file:
-        html_code = file.read()
-        st.markdown(html_code, unsafe_allow_html=True)
+    try:
+        with open(file_path, 'r') as file:
+            html_code = file.read()
+            st.markdown(html_code, unsafe_allow_html=True)
+    except FileNotFoundError:
+        st.error(f"HTML file not found at {file_path}")
 
 # Memuat CSS, JS, dan HTML
 load_css()
