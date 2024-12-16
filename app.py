@@ -37,7 +37,7 @@ load_css()
 load_js()
 
 # Memuat index.html sebagai tampilan pertama
-load_html("critiproject2/templates/index.html")
+load_html("templates/index.html")
 
 # Konfigurasi Model
 MODEL_PATH = 'best_pneumonia_model_initial_labkom_VGG16.h5'  # Ganti dengan nama file model VGG16 Anda
