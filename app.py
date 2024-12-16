@@ -12,6 +12,33 @@ import base64
 # Konfigurasi Halaman
 st.set_page_config(page_title="DIMASTI CNN", page_icon="🩺", layout="wide")
 
+# Fungsi untuk memuat CSS dari file eksternal
+def load_css():
+    css_path = 'static/css/style.css'  # Sesuaikan dengan path
+    with open(css_path, 'r') as file:
+        css_code = file.read()
+        st.markdown(f"<style>{css_code}</style>", unsafe_allow_html=True)
+
+# Fungsi untuk memuat JavaScript dari file eksternal
+def load_js():
+    js_path = 'static/js/script.js'  # Sesuaikan dengan path
+    with open(js_path, 'r') as file:
+        js_code = file.read()
+        st.markdown(f"<script>{js_code}</script>", unsafe_allow_html=True)
+
+# Fungsi untuk memuat HTML dari file eksternal
+def load_html(file_path):
+    with open(file_path, 'r') as file:
+        html_code = file.read()
+        st.markdown(html_code, unsafe_allow_html=True)
+
+# Memuat CSS, JS, dan HTML
+load_css()
+load_js()
+
+# Memuat index.html sebagai tampilan pertama
+load_html("critiproject2/templates/index.html")
+
 # Konfigurasi Model
 MODEL_PATH = 'best_pneumonia_model_initial_labkom_VGG16.h5'  # Ganti dengan nama file model VGG16 Anda
 if not os.path.exists(MODEL_PATH):
@@ -80,27 +107,6 @@ def predict_and_generate_heatmap(img, model, last_conv_layer_name, preprocess_in
     draw.text((5, 5), text, fill='white', font=font)
 
     return superimposed_img, label, prob_percent
-
-# Fungsi untuk memuat CSS dan JS dari file terpisah
-def load_css():
-    css_path = 'static/css/style.css'  # Sesuaikan dengan path
-    with open(css_path, 'r') as file:
-        css_code = file.read()
-        st.markdown(f"<style>{css_code}</style>", unsafe_allow_html=True)
-
-def load_js():
-    js_path = 'static/js/script.js'  # Sesuaikan dengan path
-    with open(js_path, 'r') as file:
-        js_code = file.read()
-        st.markdown(f"<script>{js_code}</script>", unsafe_allow_html=True)
-
-# Memuat CSS dan JS
-load_css()
-load_js()
-
-# Halaman Utama
-st.title("DIMASTI CNN: Deteksi Pneumonia")
-st.markdown("### Silakan unggah gambar X-Ray Anda untuk prediksi.")
 
 # Widget upload dan prediksi
 uploaded_file = st.file_uploader("Upload gambar (X-Ray):", type=["png", "jpg", "jpeg"])
